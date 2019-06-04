@@ -1,1 +1,34 @@
-<h1>sample Angular Application</h1>
+<!DOCTYPE html>
+ <html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Paper Stack</title>
+
+</head>
+<body>
+value is:	{{validated}}
+<div class="container" *ngIf = "!validated">
+	<section id="content">
+		<form #signupForm="ngForm" (ngSubmit)="loginUser(signupForm)">
+			<h1>Login Form</h1>
+			<div>
+				<input type="text" placeholder="user name" name="userName" id="userName" ngModel/>
+			</div>
+			<div>
+				<input type="password" placeholder="Password" name="password" id="password" ngModel/>
+			</div>
+			<div>
+				<button type="submit">Sign Up</button>
+				<a href="#">Lost your password?</a>
+				<a href="#">Register</a>
+			</div>
+		</form>
+		
+	</section>
+</div>
+
+<router-outlet></router-outlet>
+
+
+</body>
+</html>
