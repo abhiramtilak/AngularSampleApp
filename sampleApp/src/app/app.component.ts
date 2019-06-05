@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Router} from "@angular/router"
-
+import {Router} from "@angular/router";
+import { GlobalsService } from './globals.service';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +10,29 @@ import {Router} from "@angular/router"
 })
 export class AppComponent implements OnInit{
   private regForm:any;
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+    private globalsService: GlobalsService
+    ) { 
   }
   title = 'sampleApp';
-  userName = 'static';
-  public  validated = false;
-  ngOnInit(){}
+  validated:boolean = GlobalsService.validated;
+  
+  ngOnInit(){
+    
+  }
   loginUser(form: NgForm) {
     console.log(form.value);
-    alert('username is :: '+form.value.userName+'...password is ::'+form.value.password);
+    //alert('username is :: '+form.value.userName+'...password is ::'+form.value.password);
     if( form.value.userName === 'abhiram' && form.value.password === 'tilak' ){
-      this.validated = true;
+      //this.validated = true;
+      GlobalsService.validated=true;
+      this.validated=GlobalsService.validated;
       this.router.navigate(['/dashboard']);
     }
     else{
-      this.validated = false;
+      //this.validated = false;
+      GlobalsService.validated=false;
+     this.validated=GlobalsService.validated;
       this.router.navigate(['/']);
     }
   }
